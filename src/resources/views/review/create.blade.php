@@ -89,7 +89,7 @@
                 <div class="form-group">
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">ご意見</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" value="{{ old('opinion') }}"></textarea>
                     </div>
                     <span class="btn btn-primary">
                         Choose File
