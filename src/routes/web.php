@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/shops/1/lists', 'App\Http\Controllers\TasksController@index')->name('lists.index');
+Route::get('/folders/1/tasks', 'App\Http\Controllers\TaskController@index')->name('tasks.index');
+
+Route::get('/review/create', 'App\Http\Controllers\ReviewController@showCreateForm')->name('review.create');
+Route::post('/review/create', 'App\Http\Controllers\ReviewController@create');
+
+Route::get('/review/confirm', 'App\Http\Controllers\ReviewController@ConfirmationForm')->name('review.confirm');
