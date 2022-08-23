@@ -23,7 +23,8 @@
           <div class="list-group">
             @foreach($folders as $folder)
             {{ $folder->title }}
-              <a href="{{ route('tasks.index', ['id' => $folder->id]) }}" class="list-group-item">
+            <img src="{{ asset('img/'. $folder->path) }}" alt="">
+              <a href="{{ route('review.create', ['id' => $folder->id]) }}" class="list-group-item">
                 レビューする
               </a>
             @endforeach

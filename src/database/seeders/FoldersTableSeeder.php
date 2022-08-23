@@ -16,14 +16,33 @@ class FoldersTableSeeder extends Seeder
      */
     public function run()
     {
-        $titles = ['イタリアン広島', 'フレンチ山口', 'レストラン岡山'];
+        $params = [
+            [
+                'title' => 'イタリアン広島',
+                'path' => 'itary.jpeg'
+            ],
+            [
+                'title' => 'フレンチ山口',
+                'path' => 'hura.jpeg'
+            ],
+            [
+                'title' => 'レストラン岡山',
+                'path' => 'steak.jpeg'
+            ]
+        ];
 
-        foreach ($titles as $title) {
-            DB::table('folders')->insert([
-                'title' => $title,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ]);
+        //$paths = ['itary.jpeg', 'hura.jpeg', 'steak.jpeg'];
+
+        foreach ($params as $param) {
+            //DB::table('folders')->insert([
+            //    'title' => $title,
+            //    'path' => $path,
+            //    'created_at' => Carbon::now(),
+            //    'updated_at' => Carbon::now(),
+            //]);
+            DB::table('folders')->insert($param);
+            $param['created_at'] = Carbon::now();
+            $param['updated_at'] = Carbon::now();
         }
     }
 }
