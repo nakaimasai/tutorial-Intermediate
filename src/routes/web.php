@@ -19,6 +19,4 @@ Route::get('/folders/1/tasks', 'App\Http\Controllers\TaskController@index')->nam
 Route::get('/upload/upload', 'App\Http\Controllers\ImageController@upload')->name('upload.upload');
 
 Route::get('/review/create', 'App\Http\Controllers\ReviewController@showCreateForm')->name('review.create');
-Route::post('/review/create', 'App\Http\Controllers\ReviewController@create');
-
-Route::post('/review/confirm', 'App\Http\Controllers\ReviewController@ConfirmationForm')->name('review.confirm');
+Route::post('/review/confirm', 'App\Http\Controllers\ReviewController@create')->name('review.confirm');

@@ -35,27 +35,25 @@
                 </div>
                 <div class="form-group">
                     <label>性別：</label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="男"{{ is_array(old("gender")) && in_array("男", old("gender"), true)? ' checked' : '' }} id="flexCheckDefault" name="gender[]">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            男
-                        </label>
-                        <input class="form-check-input" type="checkbox" value="女"{{ is_array(old("gender")) && in_array("女", old("gender"), true)? ' checked' : '' }} id="flexCheckChecked" name="gender[]">
-                        <label class="form-check-label" for="flexCheckChecked">
-                            女
-                        </label>
+                        <div class="form-check form-check-inline">                
+                            <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="男性">
+                            <label class="form-check-label" for="radio">男性</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="女性">
+                            <label class="form-check-label" for="radio">女性</label>
+                        </div>  
                     </div>
-                </div>
                 <div class="form-group">
                     <label>年代：</label>
                     <select class="form-select form-select-lg mb-3" aria-label="form-select form-select-lg mb-3" name="select">
                         <option value="" hidden>選択してください</option>
-                        <option value="1" @if( old('select') === '1' ) selected @endif>１０代</option>
-                        <option value="2" @if( old('select') === '2' ) selected @endif>２０代</option>
-                        <option value="3" @if( old('select') === '3' ) selected @endif>３０代</option>
-                        <option value="4" @if( old('select') === '4' ) selected @endif>４０代</option>
-                        <option value="5" @if( old('select') === '5' ) selected @endif>５０代</option>
-                        <option value="6" @if( old('select') === '6' ) selected @endif>６０代</option>
+                        <option value="10代" @if( old('select') === '10代' ) selected @endif>１０代</option>
+                        <option value="20代" @if( old('select') === '20代' ) selected @endif>２０代</option>
+                        <option value="30代" @if( old('select') === '30代' ) selected @endif>３０代</option>
+                        <option value="40代" @if( old('select') === '40代' ) selected @endif>４０代</option>
+                        <option value="50代" @if( old('select') === '50代' ) selected @endif>５０代</option>
+                        <option value="60代" @if( old('select') === '60代' ) selected @endif>６０代</option>
                     </select>
                 </div>
                 <div>

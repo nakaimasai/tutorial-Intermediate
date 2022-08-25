@@ -18,22 +18,16 @@ class ReviewController extends Controller
     }
     public function create(CreateReview $request)
     {
-        // フォルダモデルのインスタンスを作成する
-        //$review = new Review();
-        // タイトルに入力値を代入する
-        //$review->name = $request->name;
-        //$review->gender = $request->gender;
-        //$review->select = $request->select;
-        //$review->mail = $request->mail;
-        // インスタンスの状態をデータベースに書き込む
-        //$review->save();
-        //ここを確認画面へのパスを設定すればいいかも
-        //$name = $request->name;
-        //$input_data = [
-        //    'name' => $name,
+        
+        //$contact = [
+        //    ["name", $request->input('name')],
+        //    ["mail", $request->input('mail')],
+        //    ["gender", $request->input('gender')],
+        //    ["select", $request->input('select')],
+        //    ["stars", $request->input('stars')],
+            
         //];
-        //return redirect()->route('review.confirm', $input_data);
-        $contact = $request->all();
-        return view('review.confirm',compact('contact'));
+        $contacts = $request->all();
+        return view('review.confirm',compact('contacts'));
     }
 }
