@@ -29,6 +29,9 @@
                 @endif
             <form action="{{ route('review.confirm') }}" method="post">
             @csrf
+            {{$name}}
+            {{$id}}
+            <input type="hidden" name="shop_id" value="{{$id}}">
                 <div class="form-group">
                     <label for="name">氏名：</label>
                     <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}">
@@ -67,7 +70,7 @@
                 <div class="form-group">
                     <div class="form-check">
                         <label>メール送信可否：</label>
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
+                        <input class="form-check-input" type="radio" name="permission" value="1" id="inlineRadio1">
                         <label class="form-check-label" for="flexCheckIndeterminate">
                             登録したメールアドレスにメールマガジンをお送りしてよろしいですか？
                         </label>
@@ -87,7 +90,7 @@
                 <div class="form-group">
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">ご意見</label>
-                    <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" value="{{ old('opinion') }}"></textarea>
+                    <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" name="opinion" value="{{ old('opinion') }}"></textarea>
                     </div>
                     <span class="btn btn-primary">
                         Choose File

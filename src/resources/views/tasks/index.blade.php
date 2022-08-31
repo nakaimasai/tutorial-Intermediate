@@ -1,20 +1,6 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>ToDo App</title>
-  <link rel="stylesheet" href="{{asset('/css/style.css')}}">
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body>
-<header>
-  <nav class="my-navbar">
-    <a class="my-navbar-brand" href="/">ToDo App</a>
-  </nav>
-</header>
-<main>
+@extends('layout')
+
+@section('content')
   <div class="container">
     <div class="row">
       <div class="col col-md-4">
@@ -24,9 +10,11 @@
             @foreach($folders as $folder)
             {{ $folder->title }}
             <img src="{{ asset('img/'. $folder->path) }}" alt="">
-              <a href="{{ route('review.create', ['id' => $folder->id]) }}" class="list-group-item">
-                レビューする
-              </a>
+              <form action="{{ route('review.create', ['id' => $folder->id]) }}" class="list-group-item">
+              <input type="hidden" name="folder_name" value="{{ $folder->title }}">
+              <input type="hidden" name="folder_id" value="{{ $folder->id }}">
+                <input type="submit" value="レビューする">
+              </form>
             @endforeach
           </div>
         </nav>
@@ -36,6 +24,4 @@
       </div>
     </div>
   </div>
-</main>
-</body>
-</html>
+  @endsection

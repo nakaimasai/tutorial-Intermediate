@@ -8,9 +8,17 @@
                 <div class="card-header">お問い合わせ内容確認</div>
 
                 <div class="card-body">
-                    <form action="{{ route('review.confirm') }}" method="post">
+                    <form action="{{ route('review.complete') }}" method="post">
                         @csrf
+                        {{ $contacts['shop_id'] }}
+                        <input type="hidden" name="shop_id" value="{{ $contacts['shop_id'] }}">
                         <input type="hidden" name="name" value="{{ $contacts['name'] }}">
+                        <input type="hidden" name="gender" value="{{ $contacts['gender'] }}">
+                        <input type="hidden" name="select" value="{{ $contacts['select'] }}">
+                        <input type="hidden" name="mail" value="{{ $contacts['mail'] }}">
+                        <input type="hidden" name="permission" value="{{ $contacts['permission'] }}">
+                        <input type="hidden" name="stars" value="{{ $contacts['stars'] }}">
+                        <input type="hidden" name="opinion" value="{{ $contacts['opinion'] }}">
                         <div class="row">
                             <label for="email" class="col-md-3 text-md-right">氏名:</label>
                             <div class="col-md-9">
@@ -39,9 +47,23 @@
                             </div>
                         </div>
                         <div class="row">
+                            <label for="contact" class="col-md-3 text-md-right">メール送信可否:</label>
+                                <div class="col-md-9">
+                                    {{ $contacts['permission'] }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <label for="contact" class="col-md-3 text-md-right">評価:</label>
                                 <div class="col-md-9">
                                     {{ $contacts['stars'] }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="contact" class="col-md-3 text-md-right">ご意見:</label>
+                                <div class="col-md-9">
+                                    {{ $contacts['opinion'] }}
                                 </div>
                             </div>
                         </div>
