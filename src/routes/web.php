@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Route::get('/shops/1/lists', 'App\Http\Controllers\TasksController@index')->name('lists.index');
+
+Auth::routes();
 Route::get('/folders/tasks', 'App\Http\Controllers\TaskController@index')->name('tasks.index');
 
 Route::get('/upload/upload', 'App\Http\Controllers\ImageController@upload')->name('upload.upload');

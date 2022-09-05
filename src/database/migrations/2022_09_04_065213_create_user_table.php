@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('shoplists', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string(['shop', 20]);
+        Schema::create('user', function (Blueprint $table) {
+            $table->integer('id');
+            $table->string('name');
+            $table->string('password');
+            $table->rememberToken();
+            $table->timestamps();
         });
     }
 
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shoplists');
+        Schema::dropIfExists('user');
     }
 };
