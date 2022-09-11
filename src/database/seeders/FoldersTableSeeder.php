@@ -19,7 +19,7 @@ class FoldersTableSeeder extends Seeder
         $params = [
             [
                 'title' => 'イタリアン広島',
-                'path' => 'itary.jpeg'
+                'path' => 'italy.jpeg'
             ],
             [
                 'title' => 'フレンチ山口',

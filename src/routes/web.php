@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 //Route::get('/shops/1/lists', 'App\Http\Controllers\TasksController@index')->name('lists.index');
 
-Auth::routes();
 Route::get('/folders/tasks', 'App\Http\Controllers\TaskController@index')->name('tasks.index');
 
 Route::get('/upload/upload', 'App\Http\Controllers\ImageController@upload')->name('upload.upload');
@@ -25,3 +24,11 @@ Route::get('/review/create', 'App\Http\Controllers\ReviewController@showCreateFo
 Route::post('/review/confirm', 'App\Http\Controllers\ReviewController@create')->name('review.confirm');
 
 Route::post('/review/complete', 'App\Http\Controllers\ReviewController@complete')->name('review.complete');
+
+Auth::routes();
+
+Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home');
+
+Route::post('/', 'App\Http\Controllers\HomeController@search')->name('home');
+
+Route::get('/detail/{id}', 'App\Http\Controllers\HomeController@detail')->name('detail');
