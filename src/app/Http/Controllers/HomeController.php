@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Review;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -25,59 +26,79 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $items = Review::get();
-        return view('home', compact('items'));
+        $user_id = Auth::id();
+        $shop = User::get();
+        if($user_id == 100)
+        {
+            $items = Review::get();
+        }else{
+            $items = Review::where('shop_id', $user_id)->get();
+        }
+        
+        //$items = Review::get();
+        return view('home', compact('items', 'shop'));
     }
 
     public function search(Request $request)
     {
+        $user_id = Auth::id();
+        $all = Review::where('shop_id', $user_id);
         $name = $request->input('name');
         $gender = $request->input('gender');
         if(!empty($gender == 1))
         {
-            $all = Review::where('gender', '男性');
+            $all = Review::where('gender', '男性')
+            ->where('shop_id', $user_id);
         }elseif(!empty($gender == 2))
         {
-            $all = Review::where('gender', '女性');
+            $all = Review::where('gender', '女性')
+            ->where('shop_id', $user_id);
         }elseif(!empty($gender == 3))
         {
-            $all = Review::where('gender', '男性')
-                                ->orwhere('gender', '女性');
+            //$all = Review::where('gender', '男性')
+            //                    ->orwhere('gender', '女性');
         }
 
 
         $select = $request->input('select');
         if(!empty($select == 1)) {
-            $all = Review::where('select', "10代");
+            $all = Review::where('select', "10代")
+            ->where('shop_id', $user_id);
         }elseif(!empty($select == 2))
         {
-            $all = Review::where('select', "20代");
+            $all = Review::where('select', "20代")
+            ->where('shop_id', $user_id);
         }elseif(!empty($select == 3))
         {
-            $selectall = Review::where('select', "30代");
+            $all = Review::where('select', "30代")
+            ->where('shop_id', $user_id);
         }elseif(!empty($select == 4))
         {
-            $all = Review::where('select', "40代");
+            $all = Review::where('select', "40代")
+            ->where('shop_id', $user_id);
         }elseif(!empty($select == 5))
         {
-            $selectall = Review::where('select', "50代");
+            $all = Review::where('select', "50代")
+            ->where('shop_id', $user_id);
         }elseif(!empty($select == 6))
         {
-            $all = Review::where('select', "60代");
+            $all = Review::where('select', "60代")
+            ->where('shop_id', $user_id);
         }elseif(!empty($select == 7))
         {
-            $all = Review::where('select', "20代")
-                                ->orwhere('select', "30代")
-                                ->orwhere('select', "40代")
-                                ->orwhere('select', "50代")
-                                ->orwhere('select', "60代");
+            //$all = Review::where('select', "20代")
+            //                    ->orwhere('select', "30代")
+            //                    ->orwhere('select', "40代")
+            //                    ->orwhere('select', "50代")
+            //                    ->orwhere('select', "60代");
         }
 
 
         $due_date = $request->input('due_date');
         $end_date = $request->input('end_date');
         if(!empty($due_date) && !empty($end_date)) {
-            $all = Review::whereBetween('created_at', [$due_date, $end_date]);
+            $all = Review::whereBetween('created_at', [$due_date, $end_date])
+            ->where('shop_id', $user_id);
         }
         //else if(empty($dateall)){
         //    $all = "Not Found";
@@ -86,14 +107,14 @@ class HomeController extends Controller
 
         $keyword = $request->input('keyword');
         if(!empty($keyword)) {
-            $all = Review::where('opinion', 'LIKE', "%{$keyword}%");
+            $all = Review::where('opinion', 'LIKE', "%{$keyword}%")
+            ->where('shop_id', $user_id);
         }
-        $reviews = Review::get();
 
         //$all = $selectall + $genderall;
 
         $items = $all->get();
-
+        //$items = $all = Review::where('shop_id', $user_id)->get();
         return view('home', compact('items'));
     }
 

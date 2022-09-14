@@ -17,6 +17,11 @@
                         @csrf
                         <input type="hidden" name="name" value="{{ Auth::user()->name }}">
                             <div class="form-group">
+                                @auth
+                                @if (Auth::user()->id === 100)
+                                
+                                @endif
+                                @endauth
                                 <label>性別：</label>
                                     <div class="form-check form-check-inline">                
                                         <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="1">
@@ -84,7 +89,7 @@
                             @endforeach
                             @else
                             <h4>検索条件に合致するレビューがありません
-                            @endif
+                        @endif
                         </table>
 
                 </div>
