@@ -16,12 +16,31 @@
                     <form action="{{ route('home') }}" method="post">
                         @csrf
                         <input type="hidden" name="name" value="{{ Auth::user()->name }}">
-                            <div class="form-group">
+                            
                                 @auth
                                 @if (Auth::user()->id === 100)
-                                
+
+                                <div class="form-group">
+                                <label>年代：</label>
+                                <select class="form-select form-select-lg mb-3" aria-label="form-select form-select-lg mb-3" name="shop">
+                                    <option value="1">イタリアン広島</option>
+                                    <option value="2">フレンチ山口</option>
+                                    <option value="3">レストラン岡山</option>
+                                </select>
+                                </div>
+
+                                {{--
+                                <div class="form-group">
+                                <select class="form-select form-select-lg mb-3" aria-label="form-select form-select-lg mb-3" name="shop">
+                                @foreach ($shops as $shop)
+                                <option value="{{$shop->id}}" ) selected>{{$shop->name}}</option>
+                                @endforeach
+                                </select>
+                                </div>
+                                --}}
                                 @endif
                                 @endauth
+                                <div class="form-group">
                                 <label>性別：</label>
                                     <div class="form-check form-check-inline">                
                                         <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="1">
@@ -66,7 +85,6 @@
                             </div>
                             </div>
                         </form>
-                        
 
                         <table>
                         @if (!$items->isEmpty())
