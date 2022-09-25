@@ -36,4 +36,11 @@
         <th>{{ $detail->created_at }}</th>
     </tr>
 </table>
+<a href="{{ route('home') }}" class="btn btn-primary">
+                一覧へ戻る
+</a>
+<form action="{{ route('destroy', ['id'=>$detail->id]) }}" method="POST">
+    @csrf
+    <button type="submit" class="btn btn-primary">削除</button>
+</form>
 @endsection

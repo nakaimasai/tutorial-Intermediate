@@ -8,6 +8,14 @@
   <img src="{{ asset('img/'. $folder->path) }}" alt="" class="h-90 w-150 text-right pb-9">
   <div class="pt-6 md:p-8 text-center md:text-left space-y-4">
   <h2 class="text-6xl ">{{ $folder->title }}</h2>
+  @if(isset( $folder->avg ))
+  <p class="result-rating-rate">
+  <span class="star5_rating" data-rate="{{ $folder->avg }}"></span>
+  </p>
+  <h2 class="text-6xl ">{{ $folder->avg }}点</h2>
+  @else
+  <p>レビューがありません</p>
+  @endif
   <form action="{{ route('review.create', ['id' => $folder->id]) }}" class="">
   <input type="hidden" name="folder_name" value="{{ $folder->title }}">
   <input type="hidden" name="folder_id" value="{{ $folder->id }}">

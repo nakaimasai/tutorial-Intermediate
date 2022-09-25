@@ -29,8 +29,7 @@
                 @endif
             <form action="{{ route('review.confirm') }}" method="post">
             @csrf
-            {{$name}}
-            {{$id}}
+            <h4>{{$name}}へのご意見をお聞かせください</h4>
             <input type="hidden" name="shop_id" value="{{$id}}">
                 <div class="form-group">
                     <label for="name">氏名：</label>
@@ -68,12 +67,15 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="form-check">
-                        <label>メール送信可否：</label>
-                        <input class="form-check-input" type="radio" name="permission" value="1" id="inlineRadio1">
-                        <label class="form-check-label" for="flexCheckIndeterminate">
-                            登録したメールアドレスにメールマガジンをお送りしてよろしいですか？
-                        </label>
+                    <label>メール送信可否：</label>
+                    <div class="form-check form-check-inline">                
+                        <input class="form-check-input" type="radio" name="permission" id="inlineRadio1" value="許可">
+                        <label class="form-check-label" for="radio">許可</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="permission" id="inlineRadio2" value="拒否" checked>
+                        <label class="form-check-label" for="radio">拒否</label>
+                    </div>  
                     </div>
                 </div>
                 <div class="form-group">
@@ -96,6 +98,9 @@
                         Choose File
                         <input type="file" style="display:none">
                     </span>
+                </div>
+                <div id="star">
+                    <star-rating v-model="rating"></star-rating>
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">確認</button>

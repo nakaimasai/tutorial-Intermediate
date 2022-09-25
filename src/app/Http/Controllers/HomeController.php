@@ -203,4 +203,13 @@ class HomeController extends Controller
 
         return view('detail', compact('detail'));
     }
+    public function destroy($id)
+    {
+        // Booksテーブルから指定のIDのレコード1件を取得
+        $review = Review::find($id);
+        // レコードを削除
+        $review->delete();
+        // 削除したら一覧画面にリダイレクト
+        return redirect()->route('destroy');
+    }
 }
