@@ -27,7 +27,7 @@
                     </ul>
                 </div>
                 @endif
-            <form action="{{ route('review.confirm') }}" method="post">
+            <form action="{{ route('review.confirm') }}" method="post" enctype="multipart/form-data">
             @csrf
             <h4>{{$name}}へのご意見をお聞かせください</h4>
             <input type="hidden" name="shop_id" value="{{$id}}">
@@ -93,10 +93,11 @@
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">ご意見</label>
                     <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" name="opinion" value="{{ old('opinion') }}"></textarea>
-                    </div>
+                </div>
+                <div>
                     <span class="btn btn-primary">
                         Choose File
-                        <input type="file" style="display:none">
+                        <input type="file" name="path">
                     </span>
                 </div>
                 <div id="star">

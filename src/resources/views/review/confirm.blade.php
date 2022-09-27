@@ -19,6 +19,7 @@
                         <input type="hidden" name="permission" value="{{ $contacts['permission'] }}">
                         <input type="hidden" name="stars" value="{{ $contacts['stars'] }}">
                         <input type="hidden" name="opinion" value="{{ $contacts['opinion'] }}">
+                        <input type="hidden" name="path" value="{{ $path}}">
                         <div class="row">
                             <label for="email" class="col-md-3 text-md-right">氏名:</label>
                             <div class="col-md-9">
@@ -64,6 +65,13 @@
                             <label for="contact" class="col-md-3 text-md-right">ご意見:</label>
                                 <div class="col-md-9">
                                     {{ $contacts['opinion'] }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="contact" class="col-md-3 text-md-right">写真:</label>
+                                <div class="col-md-9">
+                                    <img src="{{ asset('storage/'. $path) }}" alt="">
                                 </div>
                             </div>
                         </div>

@@ -34,5 +34,3 @@ Route::post('/', 'App\Http\Controllers\HomeController@search')->name('home');
 Route::get('/detail/{id}', 'App\Http\Controllers\HomeController@detail')->name('detail');
 
 Route::post('/destroy/{id}', 'App\Http\Controllers\HomeController@destroy')->name('destroy');
-
-Route::get('complete', 'App\Http\Controllers\HomeController@detail')->name('complete');

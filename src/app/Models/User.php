@@ -52,4 +52,11 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Review');
     }
+
+    public function getLists()
+    {
+        $categories = User::pluck('id', 'shop_id', 'name', 'gender', 'select', 'mail', 'permission', 'stars', 'opinion', 'create_at', 'path');
+
+        return $categories;
+    }
 }

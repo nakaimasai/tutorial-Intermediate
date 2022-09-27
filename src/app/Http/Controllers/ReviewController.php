@@ -20,28 +20,17 @@ class ReviewController extends Controller
     }
     public function create(CreateReview $request)
     {
+        $img = $request->file('path');
+        if(!empty($img)){
+            $path = $img->store('img','public');
+        }
+        else{
+            $path = NULL;
+        }
         
-        //$contact = [
-        //    ["name", $request->input('name')],
-        //    ["mail", $request->input('mail')],
-        //    ["gender", $request->input('gender')],
-        //    ["select", $request->input('select')],
-        //    ["stars", $request->input('stars')],
-            
-        //];
-        //$contacts = $request->session()->get('name', 'gender', 'select', 'mail', 'stars');
-        //$name = $request->session()->get('name');
-        //$gender = $request->session()->get('gender');
-        //$select = $request->session()->get('select');
-        //$mail = $request->session()->get('mail');
-        //$stars = $request->session()->get('stars');
-        //$request->session()->put('name', 'name');
-        //$request->session()->put('gender', 'gender');
-        //$request->session()->put('select', 'select');
-        //$request->session()->put('mail', 'mail');
-        //$request->session()->put('stars', 'stars');
         $contacts = $request->all();
-        return view('review.confirm',compact('contacts'));
+        //$path = $request->file('path')->store('img','public');
+        return view('review.confirm',compact('contacts', 'path'));
     }
     public function complete(Request $request)
     {
@@ -54,6 +43,7 @@ class ReviewController extends Controller
         $review->permission = $request->permission;
         $review->stars = $request->stars;
         $review->opinion = $request->opinion;
+        $review->path = $request->path;
         $review->save();
 
         return view('review.complete');

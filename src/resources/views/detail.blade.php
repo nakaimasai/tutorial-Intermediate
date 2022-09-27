@@ -1,8 +1,18 @@
 @extends('layout')
 
 @section('content')
+<input type="hidden" name="id" value="{{ $detail->id }}"
+<div class="flex items-center justify-center p-12">
+  <!-- Author: FormBold Team -->
+  <!-- Learn More: https://formbold.com -->
+  <div class="mx-auto w-full max-w-[550px]">
 <h1>詳細</h1>
+
 <table>
+    <tr>
+        <th>ID</th>
+        <th>{{ $detail->id }}</th>
+    </tr>
     <tr>
         <th>名前</th>
         <th>{{ $detail->name }}</th>
@@ -43,4 +53,6 @@
     @csrf
     <button type="submit" class="btn btn-primary">削除</button>
 </form>
+</div>
+</div>
 @endsection
