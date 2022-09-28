@@ -19,7 +19,6 @@
     @if(Auth::check())
         <a class="my-navbar-brand" href="{{ route('home') }}">Review App</a>
           @csrf
-        </form>
       @else
         <a class="my-navbar-brand" href="{{ route('tasks.index') }}">Review App</a>
       @endif

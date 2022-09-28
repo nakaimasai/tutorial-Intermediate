@@ -20,11 +20,11 @@
                                 @if (Auth::user()->id === 100)
 
                                 <div class="form-group">
-                                <label>年代：</label>
+                                <label>店舗：</label>
                                 <select class="form-select form-select-lg mb-3" aria-label="form-select form-select-lg mb-3" name="shop">
-                                    <option value="1">イタリアン広島</option>
-                                    <option value="2">フレンチ山口</option>
-                                    <option value="3">レストラン岡山</option>
+                                    <option value="1" @if( old('shop') === '1' ) selected @endif>イタリアン広島</option>
+                                    <option value="2" @if( old('shop') === '2' ) selected @endif>フレンチ山口</option>
+                                    <option value="3" @if( old('shop') === '3' ) selected @endif>レストラン岡山</option>
                                 </select>
                                 </div>
 
@@ -42,26 +42,26 @@
                                 <div class="form-group">
                                 <label>性別：</label>
                                     <div class="form-check form-check-inline">                
-                                        <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="1">
+                                        <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="1" {{ old('gender') === '1' ? 'checked' : '' }}>
                                         <label class="form-check-label" for="radio">男性</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="2">
+                                        <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="2" {{ old('gender') === '2' ? 'checked' : '' }}>
                                         <label class="form-check-label" for="radio">女性</label>
                                     </div>  
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="3" checked>
+                                        <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="3" {{ old('gender') === '3' ? 'checked' : '' }} checked>
                                         <label class="form-check-label" for="radio">すべて</label>
                                     </div> 
                                 </div>
                                 <div class="form-group">
                                     <label>メール送信可否：</label>
                                     <div class="form-check form-check-inline">                
-                                        <input class="form-check-input" type="radio" name="permission" id="inlineRadio1" value="1">
+                                        <input class="form-check-input" type="radio" name="permission" id="inlineRadio1" value="1" {{ old('permission') === '1' ? 'checked' : '' }}>
                                         <label class="form-check-label" for="radio">許可のみ</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="permission" id="inlineRadio2" value="2" checked>
+                                        <input class="form-check-input" type="radio" name="permission" id="inlineRadio2" value="2" {{ old('permission') === '2' ? 'checked' : '' }} checked>
                                         <label class="form-check-label" for="radio">全て</label>
                                     </div>  
                                     

@@ -11,6 +11,7 @@
                     <form action="{{ route('review.complete') }}" method="post">
                         @csrf
                         {{ $contacts['shop_id'] }}
+                        <input type="hidden" name="shop_name" value="{{ $contacts['shop_name'] }}">
                         <input type="hidden" name="shop_id" value="{{ $contacts['shop_id'] }}">
                         <input type="hidden" name="name" value="{{ $contacts['name'] }}">
                         <input type="hidden" name="gender" value="{{ $contacts['gender'] }}">
@@ -77,10 +78,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="container">
+                        <div class="flex flex-reverse">
                         <div class="form-group row">
-                            <div class="offset-md-1 col-md-3">
-                            <a href="{{ route('review.create') }}" class="btn btn-info">戻る</a> 
+                            <button type="submit" name='back' value="back" class="bg-blue-300 hover:bg-blue-400 text-white rounded px-4 py-2">
+                                    修正
+                            </button>
                         </div>
                         <div class="col-md-2 offset-md-6">
                             <button type="submit" class="bg-blue-300 hover:bg-blue-400 text-white rounded px-4 py-2">

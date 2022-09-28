@@ -29,8 +29,19 @@
                 @endif
             <form action="{{ route('review.confirm') }}" method="post" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="shop_name" value="{{$name}}">
+            @if (Session::has('name'))
+            <h4>{{ Session::get('name') }}へのご意見をお聞かせください</h4>
+            @else
             <h4>{{$name}}へのご意見をお聞かせください</h4>
-            <input type="hidden" name="shop_id" value="{{$id}}">
+            @endif
+
+            <input type="hidden" name="shop_name" value="{{$name}}">
+            @if (Session::has('id'))
+            <input type="hidden" name="shop_id" value="{{ Session::get('id') }}">
+            @else
+            <input type="hidden" name="shop_id" value="{{ $id }}">
+            @endif
                 <div class="form-group">
                     <label for="name">氏名：</label>
                     <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}">
@@ -38,11 +49,11 @@
                 <div class="form-group">
                     <label>性別：</label>
                         <div class="form-check form-check-inline">                
-                            <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="男性">
+                            <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="男性" {{ old('gender') == '男性' ? 'checked' : '' }}>
                             <label class="form-check-label" for="radio">男性</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="女性">
+                            <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="女性" {{ old('gender') == '女性' ? 'checked' : '' }}>
                             <label class="form-check-label" for="radio">女性</label>
                         </div>  
                     </div>
@@ -62,18 +73,18 @@
                     <div class="row">
                     <label for="colFormLabelLg" class="col-sm-2 col-form-label">メール</label>
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" id="colFormLabel" name="mail">
+                            <input type="email" class="form-control" id="colFormLabel" name="mail" value="{{ old('mail') }}">
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label>メール送信可否：</label>
                     <div class="form-check form-check-inline">                
-                        <input class="form-check-input" type="radio" name="permission" id="inlineRadio1" value="許可">
+                        <input class="form-check-input" type="radio" name="permission" id="inlineRadio1" value="許可" {{ old('permission') == '許可' ? 'checked' : '' }}>
                         <label class="form-check-label" for="radio">許可</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="permission" id="inlineRadio2" value="拒否" checked>
+                        <input class="form-check-input" type="radio" name="permission" id="inlineRadio2" value="拒否" {{ old('permission') == '拒否' ? 'checked' : '' }} checked>
                         <label class="form-check-label" for="radio">拒否</label>
                     </div>  
                     </div>
@@ -82,11 +93,11 @@
                     <label>評価：</label>
                     <select class="form-select form-select-lg mb-3" aria-label="form-select form-select-lg mb-3" name="stars">
                         <option value="" hidden>選択してください</option>
-                        <option value="1">星１</option>
-                        <option value="2">星２</option>
-                        <option value="3">星３</option>
-                        <option value="4">星４</option>
-                        <option value="5">星５</option>
+                        <option value="1" @if( old('stars') === '1' ) selected @endif>星１</option>
+                        <option value="2" @if( old('stars') === '2' ) selected @endif>星２</option>
+                        <option value="3" @if( old('stars') === '3' ) selected @endif>星３</option>
+                        <option value="4" @if( old('stars') === '4' ) selected @endif>星４</option>
+                        <option value="5" @if( old('stars') === '5' ) selected @endif>星５</option>
                     </select>
                 </div>
                 <div class="form-group">

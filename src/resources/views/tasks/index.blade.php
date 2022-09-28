@@ -26,6 +26,7 @@
                 <button class="shadow-lg px-2 py-1  bg-blue-400  text-white font-semibold rounded  hover:bg-blue-500 "><input type="submit" value="レビューする"></button>
                 </form>
                 <p class="mt-3 text-lg">
+                {{ $folder->detail }}
                 </p>
             </div>
         </div>
