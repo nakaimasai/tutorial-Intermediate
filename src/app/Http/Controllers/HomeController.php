@@ -9,6 +9,7 @@ use App\Models\Folder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection; 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class HomeController extends Controller
@@ -38,9 +39,9 @@ class HomeController extends Controller
         $shops = User::get();
         if($user_id == 100)
         {
-            $items = Review::get();
+            $items = Review::Paginate(5);
         }else{
-            $items = Review::where('shop_id', $user_id)->get();
+            $items = Review::where('shop_id', $user_id)->Paginate(5);
         }
         
         //$items = Review::get();
@@ -176,7 +177,7 @@ class HomeController extends Controller
         if(!empty($keyword)) {
             $k = $keyword;
         }else{
-            $k = 'NULL';
+            $k = '';
         }
         $keyword = $request->input('keyword');
         if(!empty($keyword)) {
@@ -189,7 +190,8 @@ class HomeController extends Controller
         ->whereIn('select', $s)
         ->whereBetween('created_at', [$due_date, $end_date])
         ->whereIn('permission', $p)
-        ->where('shop_id', $user_id);
+        ->where('opinion', 'LIKE', "%{$k}%")
+        ->where('shop_id', $shop_id);
         $items = $all->orderBy("id", "desc")->Paginate(5);
 
         return view('home', compact('items', 'shops', 'shop_id'));
@@ -201,62 +203,6 @@ class HomeController extends Controller
         {
         $all = Review::where('shop_id', $user_id);
         $name = $request->input('name');
-/*
-        $gender = $request->input('gender');
-        if(!empty($gender == 1))
-        {
-            $all = Review::where('gender', "男性")
-                                ->where('shop_id', $user_id);
-        }elseif(!empty($gender == 2))
-        {
-            $all = Review::where('gender', "女性")
-                                ->where('shop_id', $user_id);
-        }elseif(!empty($gender == 3))
-        {
-            $all = Review::where('gender', "男性")
-                                ->where('shop_id', $user_id)
-                                ->orwhere('gender', "女性")
-                                ->where('shop_id', $user_id);
-        }
-
-
-        $select = $request->input('select');
-        if(!empty($select == 1)) {
-            $all1 = Review::where('select', "10代")
-            ->where('shop_id', $user_id);
-        }elseif(!empty($select == 2))
-        {
-            $all1 = Review::where('select', "20代")
-            ->where('shop_id', $user_id);
-        }elseif(!empty($select == 3))
-        {
-            $all1 = Review::where('select', "30代")
-            ->where('shop_id', $user_id);
-        }elseif(!empty($select == 4))
-        {
-            $all1 = Review::where('select', "40代")
-            ->where('shop_id', $user_id);
-        }elseif(!empty($select == 5))
-        {
-            $all1 = Review::where('select', "50代")
-            ->where('shop_id', $user_id);
-        }elseif(!empty($select == 6))
-        {
-            $all1 = Review::where('select', "60代")
-            ->where('shop_id', $user_id);
-        }elseif(!empty($select == 7))
-        {
-            $all1 = Review::where('select', "20代")
-                                ->where('shop_id', $user_id)
-                                ->orwhere('select', "30代")
-                                ->where('shop_id', $user_id)
-                                ->orwhere('select', "40代")
-                                ->where('shop_id', $user_id)
-                                ->orwhere('select', "50代")
-                                ->where('shop_id', $user_id)
-                                ->orwhere('select', "60代")
-                                ->where('shop_id', $user_id);
-        }*/
 
         $all = Review::all();
         $gender = $request->input('gender');
@@ -310,7 +256,7 @@ class HomeController extends Controller
         if(!empty($keyword)) {
             $k = $keyword;
         }else{
-            $k = 'NULL';
+            $k = '';
         }
         $keyword = $request->input('keyword');
         if(!empty($keyword)) {
@@ -323,32 +269,9 @@ class HomeController extends Controller
         ->whereIn('select', $s)
         ->whereBetween('created_at', [$due_date, $end_date])
         ->whereIn('permission', $p)
+        ->where('opinion', 'LIKE', "%{$k}%")
         ->where('shop_id', $user_id);
         $items = $all->orderBy("id", "desc")->Paginate(5);
-
-/*
-        $due_date = $request->input('due_date');
-        $end_date = $request->input('end_date');
-        if(!empty($due_date) && !empty($end_date)) {
-            $all = Review::whereBetween('created_at', [$due_date, $end_date])
-            ->where('shop_id', $user_id);
-        }
-        
-
-        $keyword = $request->input('keyword');
-        if(!empty($keyword)) {
-            $all = Review::where('opinion', 'LIKE', "%{$keyword}%")
-            ->where('shop_id', $user_id);
-        }
-
-        //$all = $selectall + $genderall;
-        */
-        //$item = $all->where($all1);
-        //$items = $all->where($all1)->get();
-        //$items = $all->unionall($all1)->get();
-        //$items = $item->get();
-        //$items = $item->mode()->get();
-        //$items = $all->get();
         return view('home', compact('items'));
        }
     }

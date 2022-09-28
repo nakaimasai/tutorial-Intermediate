@@ -43,8 +43,10 @@ a.my-navbar-item:hover {
   white-space: nowrap;
   width: 1px;
 }
-
-
+.form-control[disabled],
+.form-control[readonly] {
+  background-color: #fff;
+}
 .star5_rating{
 	position: relative;
 	z-index: 0;

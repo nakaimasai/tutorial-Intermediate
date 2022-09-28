@@ -11,7 +11,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <h2>{{ Auth::user()->name }}のレビュー管理画面</h2>
+                    <h2 class="text-5xl">{{ Auth::user()->name }}のレビュー管理画面</h2>
                     <form action="{{ route('home') }}" method="post">
                         @csrf
                         <input type="hidden" name="name" value="{{ Auth::user()->name }}">
@@ -92,12 +92,13 @@
                                     </div>
                                 </div>
                                 <div class="text-center">
-                                <button type="submit" class="bg-blue-500 hover:bg-blue-400 text-white rounded px-4 py-2">確認</button>
+                                <button type="submit" class="bg-blue-300 hover:bg-blue-400 text-white rounded px-4 py-2">検索</button>
+                                <input type="reset" name="reset" class="bg-red-600 hover:bg-red-500 text-white rounded px-4 py-2" value="リセット" >
                                 </div>
                                 </div>
                             </form>
                             <div class="form-group">
-                            <table width="800" border="1">
+                            <table width="800" class="border-width: 2px;">
                             @if (!$items->isEmpty())
                             <tbody>
                                 <tr>
@@ -120,7 +121,6 @@
                                 </tr>
                             <tfoot>
                                 @endforeach
-                                
                                 <h4>合計件数：{{ $items->total() }}件中{{ $items->firstItem() }}~{{ $items->lastItem() }} {{ $items->links() }}</h4>
                                 @else
                                 <h4>検索条件に合致するレビューがありません

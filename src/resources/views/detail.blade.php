@@ -46,13 +46,15 @@
         <th>{{ $detail->created_at }}</th>
     </tr>
 </table>
-<a href="{{ route('home') }}" class="btn btn-primary">
+<div class="flex flex-reverse">
+<a href="{{ route('home') }}" class="bg-blue-300 hover:bg-blue-400 text-white rounded px-4 py-2 ml-10">
                 一覧へ戻る
 </a>
 <form action="{{ route('destroy', ['id'=>$detail->id]) }}" method="POST">
     @csrf
-    <button type="submit" class="btn btn-primary">削除</button>
+    <button type="submit" class="bg-blue-300 hover:bg-blue-400 text-white rounded px-4 py-2 ml-10">削除</button>
 </form>
+</div>
 </div>
 </div>
 @endsection

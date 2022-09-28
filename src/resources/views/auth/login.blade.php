@@ -41,7 +41,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="bg-blue-300 hover:bg-blue-400 text-white rounded px-4 py-2">
                                     {{ __('ログイン') }}
                                 </button>
                             </div>
